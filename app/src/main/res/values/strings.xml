@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Covid-Stats-Global</string>
+    <string name="home">Inicio</string>
+    <string name="country">Paises</string>
+    <string name="info">Informacion</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Fragment inicio</string>
+
 </resources>
