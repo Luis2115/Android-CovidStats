@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         navigation = findViewById(R.id.btnNavigation);
         navigation.setOnNavigationItemSelectedListener(interfaceBottonNavigation);
 
-        loadFragment(homeFragment);
+        getSupportFragmentManager().beginTransaction().add(R.id.containerFragment, homeFragment).commit();
     }
 
     private final BottomNavigationView.OnNavigationItemSelectedListener interfaceBottonNavigation = item -> {
@@ -54,5 +54,4 @@ public class MainActivity extends AppCompatActivity {
         transaction.addToBackStack(null);
         transaction.commit();
     }
-
 }
