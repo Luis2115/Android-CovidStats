@@ -1,16 +1,192 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Fragments.HomeFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:textAlignment="center"
-        android:textSize="@dimen/_50ssp"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="match_parent">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardTop"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_180sdp"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginEnd="@dimen/_20sdp"
+            app:cardCornerRadius="@dimen/_5sdp"
+            app:cardElevation="@dimen/_10sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <org.eazegraph.lib.charts.PieChart
+                    android:id="@+id/globalStats"
+                    android:layout_width="@dimen/_130sdp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:layout_marginBottom="@dimen/_15sdp"
+                    android:padding="@dimen/_6sdp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <View
+                    android:id="@+id/viewCasos"
+                    android:layout_width="@dimen/_15sdp"
+                    android:layout_height="@dimen/_15sdp"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:background="@color/cases"
+                    app:layout_constraintBottom_toBottomOf="@id/globalStats"
+                    app:layout_constraintStart_toEndOf="@id/globalStats"
+                    app:layout_constraintTop_toTopOf="@id/globalStats"
+                    app:layout_constraintVertical_bias="0.25" />
+
+                <TextView
+                    android:id="@+id/tv1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:text="@string/total_casos"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/viewCasos"
+                    app:layout_constraintTop_toTopOf="@+id/viewCasos" />
+
+                <View
+                    android:id="@+id/viewRecuperados"
+                    android:layout_width="@dimen/_15sdp"
+                    android:layout_height="@dimen/_15sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:background="@color/recovered"
+                    app:layout_constraintStart_toStartOf="@id/viewCasos"
+                    app:layout_constraintTop_toBottomOf="@id/viewCasos" />
+
+                <TextView
+                    android:id="@+id/tv2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/recuperados"
+                    app:layout_constraintEnd_toEndOf="@+id/tv1"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/tv1"
+                    app:layout_constraintTop_toTopOf="@+id/viewRecuperados" />
+
+                <View
+                    android:id="@+id/viewMuertos"
+                    android:layout_width="@dimen/_15sdp"
+                    android:layout_height="@dimen/_15sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:background="@color/deaths"
+                    app:layout_constraintStart_toStartOf="@id/viewRecuperados"
+                    app:layout_constraintTop_toBottomOf="@id/viewRecuperados" />
+
+                <TextView
+                    android:id="@+id/tv3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/muertos"
+                    app:layout_constraintEnd_toEndOf="@+id/tv1"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/tv1"
+                    app:layout_constraintTop_toTopOf="@+id/viewMuertos" />
+
+                <View
+                    android:id="@+id/viewActivos"
+                    android:layout_width="@dimen/_15sdp"
+                    android:layout_height="@dimen/_15sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:background="@color/active"
+                    app:layout_constraintStart_toStartOf="@id/viewMuertos"
+                    app:layout_constraintTop_toBottomOf="@id/viewMuertos" />
+
+                <TextView
+                    android:id="@+id/tv4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/activos"
+                    app:layout_constraintEnd_toEndOf="@+id/tv1"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/tv1"
+                    app:layout_constraintTop_toTopOf="@+id/viewActivos" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardBotton"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginBottom="@dimen/_16sdp"
+            app:cardCornerRadius="@dimen/_5sdp"
+            app:cardMaxElevation="@dimen/_10sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/cardTop"
+            app:layout_constraintStart_toStartOf="@id/cardTop"
+            app:layout_constraintTop_toBottomOf="@id/cardTop">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/tv5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_16sdp"
+                    android:layout_marginTop="@dimen/_16sdp"
+                    android:layout_marginEnd="@dimen/_16sdp"
+                    android:gravity="center"
+                    android:text="@string/Global_Stats"
+                    android:textAllCaps="true"
+                    android:textSize="@dimen/_20ssp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <fr.castorflex.android.circularprogressbar.CircularProgressBar
+                    android:id="@+id/loader"
+                    android:layout_width="@dimen/_40sdp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:indeterminate="true"
+                    app:cpb_color="#FFee44"
+                    app:cpb_colors="@array/gplus_colors"
+                    app:cpb_max_sweep_angle="300"
+                    app:cpb_min_sweep_angle="10"
+                    app:cpb_rotation_speed="1.0"
+                    app:cpb_stroke_width="4dp"
+                    app:cpb_sweep_speed="1.0"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv5" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerDatos"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:visibility="visible"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv5" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

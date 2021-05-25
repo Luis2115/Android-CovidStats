@@ -5,5 +5,10 @@
     <string name="info">Informacion</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Fragment inicio</string>
+    <string name="total_casos">Total de Casos</string>
+    <string name="recuperados">Recuperados</string>
+    <string name="muertos">Muertos</string>
+    <string name="activos">Activos</string>
+    <string name="Global_Stats">Estadisticas Globales</string>
 
 </resources>
