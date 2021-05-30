@@ -4,6 +4,8 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -11,12 +13,14 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.reymi.covid_stats_global.Fragments.CountryFragment;
 import com.reymi.covid_stats_global.Models.ResponseCountry;
 import com.reymi.covid_stats_global.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class CountryAdapter extends RecyclerView.Adapter<CountryAdapter.CountryViewHolder> {
+public class CountryAdapter extends RecyclerView.Adapter<CountryAdapter.CountryViewHolder> implements Filterable {
 
     private Context context;
     private OnItemClickListener itemClickListener;
@@ -53,11 +57,6 @@ public class CountryAdapter extends RecyclerView.Adapter<CountryAdapter.CountryV
         return countryModelsList.size();
     }
 
-    @Override
-    public int getItemViewType(int position) {
-        return position;
-    }
-
     public interface OnItemClickListener {
         void onItemClick(int position);
     }
@@ -80,5 +79,40 @@ public class CountryAdapter extends RecyclerView.Adapter<CountryAdapter.CountryV
         }
     }
 
+    @Override
+    public Filter getFilter() {
+        Filter filter = new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence constraint) {
 
+                FilterResults filterResults = new FilterResults();
+                if (constraint == null || constraint.length() == 0) {
+                    filterResults.count = countryModelsList.size();
+                    filterResults.values = countryModelsList;
+
+                } else {
+                    List<ResponseCountry> resultsModel = new ArrayList<>();
+                    String searchStr = constraint.toString().toLowerCase();
+
+                    for (ResponseCountry itemsModel : countryModelsList) {
+                        if (itemsModel.getCountry().toLowerCase().contains(searchStr)) {
+                            resultsModel.add(itemsModel);
+                        }
+                        filterResults.count = resultsModel.size();
+                        filterResults.values = resultsModel;
+                    }
+
+                }
+                return filterResults;
+            }
+
+            @Override
+            protected void publishResults(CharSequence constraint, FilterResults results) {
+                countryModelsListFiltered = (ArrayList<ResponseCountry>) results.values;
+                CountryFragment.responseCountryList = (ArrayList<ResponseCountry>) results.values;
+                notifyDataSetChanged();
+            }
+        };
+        return filter;
+    }
 }

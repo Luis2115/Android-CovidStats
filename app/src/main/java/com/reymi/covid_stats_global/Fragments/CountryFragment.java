@@ -1,6 +1,8 @@
 package com.reymi.covid_stats_global.Fragments;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -29,7 +33,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class CountryFragment extends Fragment {
 
     View view;
-    ArrayList<ResponseCountry> responseCountryList;
+    public static ArrayList<ResponseCountry> responseCountryList = new ArrayList<>();
     RecyclerView countryRecyclerView;
     EditText search;
     CircularProgressBar circularProgressBar;
@@ -53,6 +57,14 @@ public class CountryFragment extends Fragment {
 
         initComponents();
 
+        cargar();
+
+        find();
+
+        return view;
+    }
+
+    private void cargar() {
         adapter = new CountryAdapter(responseCountryList, getContext(), new CountryAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
@@ -62,8 +74,26 @@ public class CountryFragment extends Fragment {
 
         countryRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
         countryRecyclerView.setAdapter(adapter);
+    }
 
-        return view;
+    private void find() {
+        search.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                adapter.getFilter().filter(s);
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
     }
 
     private void fetchData() {
@@ -107,7 +137,6 @@ public class CountryFragment extends Fragment {
         countryRecyclerView = view.findViewById(R.id.recyclerView);
         circularProgressBar = view.findViewById(R.id.loader);
 
-        responseCountryList = new ArrayList<>();
         fetchData();
     }
 }
