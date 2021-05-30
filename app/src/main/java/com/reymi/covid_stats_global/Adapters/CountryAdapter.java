@@ -24,10 +24,11 @@ public class CountryAdapter extends RecyclerView.Adapter<CountryAdapter.CountryV
     private ArrayList<ResponseCountry> countryModelsList;
     private ArrayList<ResponseCountry> countryModelsListFiltered;
 
-    public CountryAdapter(Context context, OnItemClickListener listener, ArrayList<ResponseCountry> countryModelsList) {
+    public CountryAdapter(ArrayList<ResponseCountry> countryModelsList, Context context, OnItemClickListener listener ) {
         this.context = context;
         this.itemClickListener = listener;
         this.countryModelsList = countryModelsList;
+        this.countryModelsListFiltered = countryModelsList;
     }
 
     @NonNull
@@ -57,7 +58,7 @@ public class CountryAdapter extends RecyclerView.Adapter<CountryAdapter.CountryV
         return position;
     }
 
-    private interface OnItemClickListener {
+    public interface OnItemClickListener {
         void onItemClick(int position);
     }
 

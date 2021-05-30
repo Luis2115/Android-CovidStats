@@ -16,17 +16,17 @@ public class ResponseCountry {
     }
 
     /**
-     * @param country Nombre del Pais
-     * @param recovered Casos Recuperados
-     * @param cases Casos Totales
-     * @param critical Casos Criticos
-     * @param active Casos Activos
+     * @param country     Nombre del Pais
+     * @param recovered   Casos Recuperados
+     * @param cases       Casos Totales
+     * @param critical    Casos Criticos
+     * @param active      Casos Activos
      * @param countryInfo Objeto con la url de la imagen del Pais
-     * @param deaths Ciudadanos Muertos
-     * @param todayCases Casos al Dia
+     * @param deaths      Ciudadanos Muertos
+     * @param todayCases  Casos al Dia
      * @param todayDeaths Ciudadanos Muertos en el Dia
      */
-    public ResponseCountry(String country, ResponseCountryInfo countryInfo, int cases, int todayCases, int deaths, int todayDeaths, int recovered,  int active, int critical) {
+    public ResponseCountry(String country, ResponseCountryInfo countryInfo, int cases, int todayCases, int deaths, int todayDeaths, int recovered, int active, int critical) {
         super();
         this.country = country;
         this.countryInfo = countryInfo;
