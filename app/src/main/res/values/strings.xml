@@ -10,5 +10,6 @@
     <string name="muertos">Muertos</string>
     <string name="activos">Activos</string>
     <string name="Global_Stats">Estadisticas Globales</string>
+    <string name="search">Buscar</string>
 
 </resources>
